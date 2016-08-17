@@ -1,12 +1,7 @@
-# laravel-db2
+# db2-laravelumen
 
-[![Latest Stable Version](https://poser.pugx.org/cooperl/laravel-db2/v/stable)](https://packagist.org/packages/cooperl/laravel-db2)
-[![Total Downloads](https://poser.pugx.org/cooperl/laravel-db2/downloads)](https://packagist.org/packages/cooperl/laravel-db2)
-[![Latest Unstable Version](https://poser.pugx.org/cooperl/laravel-db2/v/unstable)](https://packagist.org/packages/cooperl/laravel-db2)
-[![License](https://poser.pugx.org/cooperl/laravel-db2/license)](https://packagist.org/packages/cooperl/laravel-db2)
-
-laravel-db2 is a simple DB2 service provider for Laravel.
-It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.
+db2-laravelumen is a fork of Cooperl22/laravel-db2 in order to support Laravel and Lumen v5.2. 
+It provides a DB2 Connection by extending the Illuminate Database component working with both Fluent (query builder) and Eloquent.
 
 ---
 
@@ -17,11 +12,14 @@ It provides DB2 Connection by extending the Illuminate Database component of the
 
 ## Installation
 
-Add laravel-db2 to your composer.json file:
+Ensure you have the proper drivers installed. 
+For our AS400 system, I installed iSeriesAccess-7.1.0-1.0.x86_64.rpm from [ibm](http://www-01.ibm.com/support/docview.wss?uid=swg21585490) using alien for our debian distribution and configuring the /etc/odbc.ini and /etc/odbcinst.ini.
+
+Add db2-laravelumen to your composer.json file:
 
 ```
 "require": {
-    "cooperl/laravel-db2": "~2.0"
+    "GeigerIT/db2-laravelumen": "~3.0"
 }
 ```
 
@@ -33,28 +31,17 @@ $ composer update
 
 ### Registering the Package
 
-Add the laravel-db2 Service Provider to your config in ``app/config/app.php``:
+Add the db2-laravelumen Service Provider to your ``bootstrap/app.php``:
 
 ```php
-'providers' => [
-    'Cooperl\Database\DB2\DB2ServiceProvider'
-],
+$app->register(GeigerIT\Database\DB2\DB2ServiceProvider::class);
 ```
 
 ### Configuration
 
-There are two ways to configure laravel-db2. You can choose the most convenient way for you. You can put your DB2 credentials into ``app/config/database.php`` (option 1) file or use package config file which you can be generated through command line by artisan (option 2).
-
-#### Option 1: Configure DB2 using ``app/config/database.php`` file 
-
-Simply add this code at the end of your ``app/config/database.php`` file:
+Put your DB2 connection and credential information into your ``config/database.php`` file. You'll notice Lumen does not have a config directory, but will read from it when you create it.
 
 ```php
-    /*
-    |--------------------------------------------------------------------------
-    | DB2 Databases
-    |--------------------------------------------------------------------------
-    */
 
     'ibmi' => [
         'driver'               => 'odbc' / 'ibm',
@@ -134,17 +121,6 @@ Simply add this code at the end of your ``app/config/database.php`` file:
 driver setting is either 'odbc' for ODBC connection or 'ibm' for pdo_ibm connection
 Then if driver is 'odbc', database must be set to ODBC connection name.
 if driver is 'ibm', database must be set to IBMi database name (WRKRDBDIRE).
-
-#### Option 2: Configure DB2 using package config file
-
-Run on the command line from the root of your project:
-
-```
-$ php artisan config:publish cooperl/laravel-db2
-```
-
-Set your laravel-db2 credentials in ``app/config/packages/cooperl/laravel-db2/config.php``
-the same way as above
 
 
 ## Usage

@@ -10,16 +10,13 @@ class ODBCConnector extends Connector implements ConnectorInterface
     public function connect(array $config)
     {
         $dsn = $this->getDsn($config);
-
         $options = $this->getOptions($config);
-
         $connection = $this->createConnection($dsn, $config, $options);
 
-        if (isset($config['schema']))
+        if (isset($config['database']))
         {
-            $schema = $config['schema'];
-
-          $connection->prepare("set schema $schema")->execute();
+            $database = $config['database'];
+            $connection->prepare("set schema $database")->execute();
         }
 
         return $connection;

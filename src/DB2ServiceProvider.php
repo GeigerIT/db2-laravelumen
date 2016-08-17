@@ -5,8 +5,6 @@ use Cooperl\Database\DB2\Connectors\ODBCConnector;
 use Cooperl\Database\DB2\Connectors\IBMConnector;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
-use Config;
 
 class DB2ServiceProvider extends ServiceProvider {
 
@@ -34,14 +32,8 @@ class DB2ServiceProvider extends ServiceProvider {
     public function register()
     {
 
-        // get the configs
-        $conns = is_array(Config::get('laravel-db2::database.connections')) ? Config::get('laravel-db2::database.connections') : [];
-
-        // Add my database configurations to the default set of configurations
-        $this->app['config']['database.connections'] = array_merge($conns, $this->app['config']['database.connections']);
-
         //Extend the connections with pdo_odbc and pdo_ibm drivers
-        foreach(Config::get('database.connections') as $conn => $config)
+        foreach(config('database.connections') as $conn => $config)
         {
 
             //Only use configurations that feature a "odbc" or "ibm" driver
