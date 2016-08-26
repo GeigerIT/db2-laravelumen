@@ -1,11 +1,15 @@
 {
-    "name": "cooperl/laravel-db2",
-    "description": "laravel-db2 is a simple DB2 service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.",
-    "keywords": ["laravel", "DB2", "Database", "PDO", "ODBC"],
+    "name": "GeigerIT/db2-laravelumen",
+    "description": "db2-laravelumen is a simple DB2 service provider for Laravel or Lumen v5.2. It provides a DB2 Connection by extending the Illuminate Database component working with both query builder and eloquent.",
+    "keywords": ["laravel", "lumen", "DB2", "Database", "PDO", "ODBC"],
     "license": "MIT",
     "authors": [
         {
             "name": "Maxime Rault",
+            "role": "Developer"
+        },
+        {
+            "name": "Evan Smith",
             "role": "Developer"
         }
     ],
