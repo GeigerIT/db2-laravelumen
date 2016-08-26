@@ -19,7 +19,7 @@ Add db2-laravelumen to your composer.json file:
 
 ```
 "require": {
-    "GeigerIT/db2-laravelumen": "~3.0"
+    "geiger-it/db2-laravelumen": "~3.0"
 }
 ```
 
@@ -34,7 +34,7 @@ $ composer update
 Add the db2-laravelumen Service Provider to your ``bootstrap/app.php``:
 
 ```php
-$app->register(GeigerIT\Database\DB2\DB2ServiceProvider::class);
+$app->register(geiger-it\Database\DB2\DB2ServiceProvider::class);
 ```
 
 ### Configuration
